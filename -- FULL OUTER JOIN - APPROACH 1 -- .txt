@@ -1,0 +1,45 @@
+-- FULL OUTER JOIN - APPROACH 1 -- Applicable in all RDBMS
+-- Query 1 --
+SELECT *
+FROM members LEFT JOIN committees 
+ON members.name = committees.name
+UNION
+-- Query 2 --
+SELECT *
+FROM members RIGHT JOIN committees 
+ON members.name = committees.name;
+
+-- FULL JOIN - APPROACH 2 -- Not Applicable in MYSQL Database, but applicable in Oracle, SQL Server RDBMS
+SELECT *
+FROM members FULL JOIN committees 
+ON members.name = committees.name;
+
+
+- Window Aggregate Function - SUM() example
+SELECT emp_name, department, salary, 
+SUM(salary) OVER(PARTITION BY department) AS Total_Sal_Per_Department
+FROM EMPLOYEE;
+
+
+-- Window Aggregate Function - MIN() example
+SELECT emp_name, department, salary, 
+MIN(salary) OVER(PARTITION BY department) AS Minimum_Sal_Per_Department
+FROM EMPLOYEE;
+
+
+
+-- Window Aggregate Function - MAX() example
+SELECT emp_name, department, salary, 
+MAX(salary) OVER(PARTITION BY department) AS Maximum_Sal_Per_Department
+FROM EMPLOYEE;
+
+
+-- Window Aggregate Function - AVG() example
+SELECT emp_name, department, salary, 
+AVG(salary) OVER(PARTITION BY department) AS Average_Sal_Per_Department
+FROM EMPLOYEE;
+
+-- Window Aggregate Function - COUNT() example
+SELECT emp_name, department, salary, 
+COUNT(*) OVER(PARTITION BY department) AS No_Of_Employees_Per_Department
+FROM EMPLOYEE;
